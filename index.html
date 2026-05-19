@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                    },
+                    colors: {
+                        dark: {
+                            900: '#0a0a0a',
+                            800: '#121212',
+                            700: '#1a1a1a',
+                            600: '#2a2a2a',
+                            500: '#333333',
+                        }
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0a0a0a;
+            color: #e5e5e5;
+        }
+        .grid-bg {
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+        .glass-nav {
+            background: rgba(18, 18, 18, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .hero-text {
+            background: linear-gradient(135deg, #ffffff 0%, #a3a3a3 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+        .tech-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            transition: all 0.3s ease;
+        }
+        .tech-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.15);
+            transform: scale(1.05);
+        }
+        .tab-active {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+        .input-field {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s ease;
+        }
+        .input-field:focus {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.2);
+            outline: none;
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .badge-glow {
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+        }
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        .typewriter {
+            overflow: hidden;
+            white-space: nowrap;
+            animation: typing 3.5s steps(40, end);
+        }
+    </style>
+</head>
+<body class="font-sans antialiased grid-bg min-h-screen">
+
+    <!-- Navigation -->
+    <nav class="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 w-[95%] max-w-6xl">
+        <div class="glass-nav rounded-full px-6 py-4 flex items-center justify-between">
+            <a href="#home" class="font-display font-bold text-xl tracking-wider text-white">rifqi.dev</a>
+            <div class="hidden md:flex items-center gap-8">
+                <a href="#home" class="text-sm font-medium text-gray-400 hover:text-white transition-colors">Home</a>
+                <a href="#aboutme" class="text-sm font-medium text-gray-400 hover:text-white transition-colors">About</a>
+                <a href="#portfolio" class="text-sm font-medium text-gray-400 hover:text-white transition-colors">Portfolio</a>
+                <a href="#contact" class="text-sm font-medium text-gray-400 hover:text-white transition-colors">Contact</a>
+            </div>
+            <button id="mobile-menu-btn" class="md:hidden text-white">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden glass-nav rounded-2xl mt-2 p-4">
+            <div class="flex flex-col gap-4">
+                <a href="#home" class="text-sm font-medium text-gray-400 hover:text-white transition-colors">Home</a>
+                <a href="#aboutme" class="text-sm font-medium text-gray-400 hover:text-white transition-colors">About</a>
+                <a href="#portfolio" class="text-sm font-medium text-gray-400 hover:text-white transition-colors">Portfolio</a>
+                <a href="#contact" class="text-sm font-medium text-gray-400 hover:text-white transition-colors">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center pt-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="grid lg:grid-cols-2 gap-12 items-center w-full">
+            <div class="space-y-8">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10">
+                    <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+                    <span class="text-xs font-medium text-gray-400 uppercase tracking-widest">Available for Work</span>
+                </div>
+                
+                <div class="space-y-2">
+                    <h1 class="font-display font-bold text-6xl sm:text-7xl lg:text-8xl leading-none hero-text">
+                        Hi, I'm
+                    </h1>
+                    <h1 class="font-display font-bold text-6xl sm:text-7xl lg:text-8xl leading-none text-gray-600">
+                        Martin|Mandi
+                    </h1>
+                </div>
+
+                <div class="space-y-4">
+                    <p class="text-xl text-gray-400 font-light">
+                        Web Developer | UI/UX Designer | Cybersecurity | Video Editor
+                    </p>
+                    <p class="text-gray-500 max-w-lg leading-relaxed">
+                        "I'm a student exploring how to build great websites from scratch—making them look awesome on any device while ensuring the back-end is completely locked down against hackers."
+                    </p>
+                </div>
+
+                <div class="flex flex-wrap gap-4">
+                    <span class="px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-sm text-gray-300">TypeScript</span>
+                    <span class="px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-sm text-gray-300">React.js</span>
+                    <span class="px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-sm text-gray-300">Tailwind</span>
+                </div>
+
+                <div class="space-y-2 text-sm text-gray-500">
+                    <p class="flex items-center gap-2">
+                        <i class="fas fa-arrow-down text-xs"></i>
+                        explore my work below
+                    </p>
+                </div>
+            </div>
+
+            <div class="relative flex justify-center lg:justify-end">
+                <div class="relative animate-float">
+                    <!-- Lanyard -->
+                    <div class="absolute -top-16 left-1/2 transform -translate-x-1/2 w-4 h-24 bg-gradient-to-b from-gray-800 to-gray-900 rounded-full"></div>
+                    <div class="absolute -top-20 left-1/2 transform -translate-x-1/2 text-[10px] text-gray-500 font-mono tracking-widest rotate-90 origin-center whitespace-nowrap">
+                        Cavite State University Imus Campus
+                    </div>
+                    
+                    <!-- ID Card -->
+                    <div class="relative w-72 h-96 bg-gradient-to-br from-gray-800 to-gray-900 rounded-3xl border-2 border-gray-700 p-3 shadow-2xl">
+                        <div class="w-full h-full bg-dark-900 rounded-2xl overflow-hidden relative">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=600&fit=crop&crop=face" 
+                                 alt="Rifqi Muhammad Aliya" 
+                                 class="w-full h-full object-cover grayscale contrast-125">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Decorative elements -->
+                    <div class="absolute -right-4 top-10 w-8 h-8 bg-blue-500/20 rounded-full blur-xl"></div>
+                    <div class="absolute -left-4 bottom-10 w-12 h-12 bg-purple-500/20 rounded-full blur-xl"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <span class="text-xs text-gray-600 uppercase tracking-widest">Scroll</span>
+            <i class="fas fa-arrow-down text-gray-600 text-xs mt-1 block text-center"></i>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="mb-12">
+            <span class="text-xs text-gray-600 uppercase tracking-widest mb-2 block">About Me</span>
+        </div>
+        
+        <div class="grid lg:grid-cols-2 gap-16 items-center">
+            <div class="space-y-8">
+                <h2 class="font-display font-bold text-5xl sm:text-6xl lg:text-7xl text-white leading-tight">
+                    Learn<br>
+                    More About<br>
+                    Mandi
+                </h2>
+                
+                <p class="text-gray-400 leading-relaxed max-w-lg">
+                    "Hi! I'm Martin Rovin R. Mandi, a second-year Information Technology student at Cavite State University - Imus Campus. I’ve been fascinated by technology and how it works since I was a kid, which is exactly why I chose IT. I'm an outgoing, multi-talented person who loves performing in front of crowds. I also enjoy the arts, specifically drawing, painting, and editing—though, fun fact, I prefer working without color whenever I draw! I love discovering new things and am always curious about the world around me."
+                </p>
+
+                <div class="p-6 rounded-2xl bg-white/5 border border-white/10">
+                    <p class="text-gray-300 italic font-light">
+                        "Turning ideas into clean, modern, and meaningful digital experiences."
+                    </p>
+                </div>
+
+                <div class="flex flex-wrap gap-4">
+                    <button class="px-6 py-3 bg-white text-black rounded-xl font-medium hover:bg-gray-200 transition-colors flex items-center gap-2">
+                        <i class="fas fa-file-alt"></i>
+                        Download CV
+                    </button>
+                    <a href="#portfolio" class="px-6 py-3 bg-white/5 border border-white/10 text-white rounded-xl font-medium hover:bg-white/10 transition-colors flex items-center gap-2">
+                        <i class="fas fa-arrow-up-right"></i>
+                        View Projects
+                    </a>
+                </div>
+            </div>
+
+            <div class="relative">
+                <div class="w-80 h-80 mx-auto relative">
+                    <div class="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-full blur-3xl"></div>
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face" 
+                         alt="Profile" 
+                         class="w-full h-full object-cover rounded-full border-2 border-white/10 grayscale contrast-125 relative z-10">
+                </div>
+            </div>
+        </div>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="text-center mb-12">
+            <h2 class="font-display font-bold text-4xl sm:text-5xl text-white mb-4">PROJECTS</h2>
+            <p class="text-gray-500 max-w-2xl mx-auto">
+                Explore my journey through projects, certifications, and technical expertise.
+            </p>
+        </div>
+
+        <!-- Tabs -->
+        <div class="flex justify-center mb-12">
+            <div class="inline-flex p-1 rounded-full bg-white/5 border border-white/10">
+                <button onclick="switchTab('projects')" id="tab-projects" class="tab-btn px-8 py-3 rounded-full text-sm font-medium text-gray-400 transition-all tab-active">
+                    Projects
+                </button>
+                <button onclick="switchTab('certificates')" id="tab-certificates" class="tab-btn px-8 py-3 rounded-full text-sm font-medium text-gray-400 transition-all">
+                    Certificates
+                </button>
+                <button onclick="switchTab('tech')" id="tab-tech" class="tab-btn px-8 py-3 rounded-full text-sm font-medium text-gray-400 transition-all">
+                    Tech Stack
+                </button>
+            </div>
+        </div>
+
+        <!-- Projects Content -->
+        <div id="content-projects" class="tab-content">
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Project Card -->
+                <div class="group rounded-3xl bg-white/5 border border-white/10 overflow-hidden card-hover">
+                    <div class="aspect-video bg-dark-800 relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop" 
+                             alt="Project Portfolio" 
+                             class="w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-opacity group-hover:scale-105 duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-dark-900 via-transparent to-transparent"></div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-display font-bold text-xl text-white mb-2">Project Portfolio</h3>
+                        <p class="text-gray-500 text-sm mb-4 line-clamp-2">
+                            Portfolio adalah kumpulan dokumen, karya, proyek, atau pencapaian terbaik seseorang yang disusun...
+                        </p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs text-gray-600">No Link</span>
+                            <button onclick="openProjectModal()" class="px-4 py-2 rounded-full bg-white/10 text-sm text-white hover:bg-white/20 transition-colors flex items-center gap-2">
+                                Details <i class="fas fa-arrow-right text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Certificates Content -->
+        <div id="content-certificates" class="tab-content hidden">
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="group rounded-3xl bg-white/5 border border-white/10 overflow-hidden card-hover p-4">
+                    <div class="aspect-[4/3] bg-white rounded-xl overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1589330694653-1a036fb33f56?w=600&h=450&fit=crop" 
+                             alt="Certificate" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-4 text-center">
+                        <h3 class="font-medium text-white text-sm uppercase tracking-wider">Sertifikat PKL PT Cakrawala Global Yaksa</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tech Stack Content -->
+        <div id="content-tech" class="tab-content hidden">
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                <div class="tech-card rounded-2xl p-6 flex flex-col items-center gap-3 cursor-pointer">
+                    <div class="w-16 h-16 flex items-center justify-center">
+                        <i class="fab fa-react text-4xl text-blue-400"></i>
+                    </div>
+                    <span class="text-sm text-gray-400">React.js</span>
+                </div>
+                <div class="tech-card rounded-2xl p-6 flex flex-col items-center gap-3 cursor-pointer">
+                    <div class="w-16 h-16 flex items-center justify-center bg-blue-600 rounded-lg">
+                        <span class="text-white font-bold text-xl">TS</span>
+                    </div>
+                    <span class="text-sm text-gray-400">TypeScript</span>
+                </div>
+                <div class="tech-card rounded-2xl p-6 flex flex-col items-center gap-3 cursor-pointer">
+                    <div class="w-16 h-16 flex items-center justify-center">
+                        <i class="fab fa-css3-alt text-4xl text-cyan-400"></i>
+                    </div>
+                    <span class="text-sm text-gray-400">Tailwind</span>
+                </div>
+                <div class="tech-card rounded-2xl p-6 flex flex-col items-center gap-3 cursor-pointer">
+                    <div class="w-16 h-16 flex items-center justify-center">
+                        <i class="fab fa-html5 text-4xl text-orange-500"></i>
+                    </div>
+                    <span class="text-sm text-gray-400">HTML</span>
+                </div>
+                <div class="tech-card rounded-2xl p-6 flex flex-col items-center gap-3 cursor-pointer">
+                    <div class="w-16 h-16 flex items-center justify-center">
+                        <i class="fab fa-css3-alt text-4xl text-blue-500"></i>
+                    </div>
+                    <span class="text-sm text-gray-400">CSS</span>
+                </div>
+                <div class="tech-card rounded-2xl p-6 flex flex-col items-center gap-3 cursor-pointer">
+                    <div class="w-16 h-16 flex items-center justify-center">
+                        <i class="fab fa-php text-4xl text-purple-400"></i>
+                    </div>
+                    <span class="text-sm text-gray-400">PHP</span>
+                </div>
+                <div class="tech-card rounded-2xl p-6 flex flex-col items-center gap-3 cursor-pointer">
+                    <div class="w-16 h-16 flex items-center justify-center">
+                        <i class="fab fa-laravel text-4xl text-red-500"></i>
+                    </div>
+                    <span class="text-sm text-gray-400">Laravel</span>
+                </div>
+                <div class="tech-card rounded-2xl p-6 flex flex-col items-center gap-3 cursor-pointer">
+                    <div class="w-16 h-16 flex items-center justify-center bg-black rounded-lg border border-white/10">
+                        <span class="text-white font-bold text-xl">N</span>
+                    </div>
+                    <span class="text-sm text-gray-400">Next.js</span>
+                </div>
+                <div class="tech-card rounded-2xl p-6 flex flex-col items-center gap-3 cursor-pointer">
+                    <div class="w-16 h-16 flex items-center justify-center bg-yellow-400 rounded-lg">
+                        <span class="text-black font-bold text-xl">JS</span>
+                    </div>
+                    <span class="text-sm text-gray-400">JavaScript</span>
+                </div>
+                <div class="tech-card rounded-2xl p-6 flex flex-col items-center gap-3 cursor-pointer">
+                    <div class="w-16 h-16 flex items-center justify-center">
+                        <i class="fas fa-database text-4xl text-blue-300"></i>
+                    </div>
+                    <span class="text-sm text-gray-400">MySQL</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Detail Modal -->
+    <div id="project-modal" class="fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeProjectModal()"></div>
+        <div class="absolute inset-4 md:inset-12 lg:inset-20 bg-dark-800 rounded-3xl border border-white/10 overflow-hidden flex flex-col">
+            <div class="p-6 border-b border-white/10 flex items-center gap-4">
+                <button onclick="closeProjectModal()" class="text-gray-400 hover:text-white transition-colors flex items-center gap-2">
+                    <i class="fas fa-arrow-left"></i> Back
+                </button>
+            </div>
+            <div class="flex-1 overflow-y-auto p-6">
+                <div class="grid lg:grid-cols-2 gap-8">
+                    <div class="space-y-6">
+                        <h2 class="font-display font-bold text-4xl text-white">Project Portfolio</h2>
+                        <div class="w-20 h-1 bg-white/20 rounded-full"></div>
+                        <p class="text-gray-400 leading-relaxed">
+                            Portfolio adalah kumpulan dokumen, karya, proyek, atau pencapaian terbaik seseorang yang disusun 
+                            secara sistematis untuk menunjukkan kemampuan, pengalaman, dan kualitas diri di bidang tertentu. 
+                            Ini berfungsi sebagai bukti nyata (bukan sekadar klaim) saat melamar kerja, beasiswa, atau proyek.
+                        </p>
+                        
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="p-4 rounded-xl bg-white/5 border border-white/10">
+                                <div class="flex items-center gap-3 mb-2">
+                                    <i class="fas fa-code text-gray-500"></i>
+                                    <span class="text-2xl font-bold text-white">3</span>
+                                </div>
+                                <p class="text-xs text-gray-500">Technologies Used</p>
+                            </div>
+                            <div class="p-4 rounded-xl bg-white/5 border border-white/10">
+                                <div class="flex items-center gap-3 mb-2">
+                                    <i class="fas fa-layer-group text-gray-500"></i>
+                                    <span class="text-2xl font-bold text-white">3</span>
+                                </div>
+                                <p class="text-xs text-gray-500">Key Features</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-4">
+                            <button class="px-6 py-3 rounded-xl bg-white/5 border border-white/10 text-gray-400 hover:text-white transition-colors flex items-center gap-2">
+                                <i class="fas fa-external-link-alt"></i> No Link
+                            </button>
+                            <button class="px-6 py-3 rounded-xl bg-white/5 border border-white/10 text-gray-400 hover:text-white transition-colors flex items-center gap-2">
+                                <i class="fas fa-code-branch"></i> No Link
+                            </button>
+                        </div>
+
+                        <div>
+                            <h4 class="text-white font-medium mb-3 flex items-center gap-2">
+                                <i class="fas fa-code text-sm"></i> Technologies Used
+                            </h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-sm text-gray-300 flex items-center gap-2">
+                                    <i class="fab fa-react text-blue-400"></i> React.js
+                                </span>
+                                <span class="px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-sm text-gray-300 flex items-center gap-2">
+                                    <i class="fab fa-css3-alt text-cyan-400"></i> Tailwind
+                                </span>
+                                <span class="px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-sm text-gray-300 flex items-center gap-2">
+                                    <i class="fas fa-code text-blue-500"></i> TypeScript
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-6">
+                        <div class="rounded-2xl overflow-hidden border border-white/10">
+                            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=500&fit=crop" 
+                                 alt="Project Preview" 
+                                 class="w-full h-auto">
+                        </div>
+                        
+                        <div class="p-6 rounded-2xl bg-white/5 border border-white/10">
+                            <h4 class="text-white font-medium mb-4 flex items-center gap-2">
+                                <i class="fas fa-star text-sm"></i> Key Features
+                            </h4>
+                            <ul class="space-y-3 text-gray-400 text-sm">
+                                <li class="flex items-start gap-2">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-gray-500 mt-2"></span>
+                                    Website full animasi
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-gray-500 mt-2"></span>
+                                    keren dan elegant
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-gray-500 mt-2"></span>
+                                    fitur lengkap
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="text-center mb-12">
+            <p class="text-gray-500">Have something in mind? Send a message and let's connect.</p>
+        </div>
+
+        <div class="grid lg:grid-cols-2 gap-8">
+            <!-- Contact Form -->
+            <div class="p-8 rounded-3xl bg-white/5 border border-white/10">
+                <h3 class="font-display font-bold text-3xl text-white mb-2">Hubungi Saya</h3>
+                <p class="text-gray-500 text-sm mb-8">Feel free to reach out if you want to collaborate, discuss ideas, or simply say hello.</p>
+                
+                <form id="contact-form" class="space-y-4" onsubmit="handleContactSubmit(event)">
+                    <div class="relative">
+                        <i class="fas fa-user absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-600"></i>
+                        <input type="text" placeholder="Your Name" required
+                               class="input-field w-full pl-12 pr-4 py-4 rounded-xl text-white placeholder-gray-600">
+                    </div>
+                    <div class="relative">
+                        <i class="fas fa-envelope absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-600"></i>
+                        <input type="email" placeholder="Your Email" required
+                               class="input-field w-full pl-12 pr-4 py-4 rounded-xl text-white placeholder-gray-600">
+                    </div>
+                    <div class="relative">
+                        <i class="fas fa-comment absolute left-4 top-4 text-gray-600"></i>
+                        <textarea placeholder="Your Message" rows="4" required
+                                  class="input-field w-full pl-12 pr-4 py-4 rounded-xl text-white placeholder-gray-600 resize-none"></textarea>
+                    </div>
+                    <button type="submit" class="w-full py-4 rounded-xl bg-white/10 text-white font-medium hover:bg-white/20 transition-colors flex items-center justify-center gap-2">
+                        <i class="fas fa-paper-plane"></i> Send Message
+                    </button>
+                </form>
+
+                <div class="mt-8">
+                    <p class="text-sm text-gray-500 mb-4">Connect With Me</p>
+                    <div class="grid grid-cols-2 gap-4">
+                        <a href="#" class="p-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors group">
+                            <div class="flex items-center gap-3">
+                                <i class="fab fa-linkedin text-xl text-gray-400 group-hover:text-white"></i>
+                                <div>
+                                    <p class="text-sm text-white font-medium">LinkedIn</p>
+                                    <p class="text-xs text-gray-600">@linkedin</p>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="#" class="p-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors group">
+                            <div class="flex items-center gap-3">
+                                <i class="fab fa-instagram text-xl text-gray-400 group-hover:text-white"></i>
+                                <div>
+                                    <p class="text-sm text-white font-medium">Instagram</p>
+                                    <p class="text-xs text-gray-600">@instagram</p>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="#" class="p-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors group">
+                            <div class="flex items-center gap-3">
+                                <i class="fab fa-github text-xl text-gray-400 group-hover:text-white"></i>
+                                <div>
+                                    <p class="text-sm text-white font-medium">GitHub</p>
+                                    <p class="text-xs text-gray-600">@github</p>
+                                </div>
+                                <i class="fas fa-arrow-up-right text-gray-600 ml-auto"></i>
+                            </div>
+                        </a>
+                        <a href="#" class="p-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors group">
+                            <div class="flex items-center gap-3">
+                                <i class="fab fa-tiktok text-xl text-gray-400 group-hover:text-white"></i>
+                                <div>
+                                    <p class="text-sm text-white font-medium">TikTok</p>
+                                    <p class="text-xs text-gray-600">@tiktok</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Comments Section -->
+            <div class="p-8 rounded-3xl bg-white/5 border border-white/10">
+                <h3 class="font-display font-bold text-3xl text-white mb-2">Comments</h3>
+                <p class="text-gray-500 text-sm mb-8">Leave your thoughts here</p>
+                
+                <form id="comment-form" class="space-y-4 mb-8" onsubmit="handleCommentSubmit(event)">
+                    <input type="text" placeholder="Your Name" required
+                           class="input-field w-full px-4 py-4 rounded-xl text-white placeholder-gray-600">
+                    <textarea placeholder="Your Comment" rows="3" required
+                              class="input-field w-full px-4 py-4 rounded-xl text-white placeholder-gray-600 resize-none"></textarea>
+                    <div class="flex items-center gap-2 p-4 rounded-xl bg-white/5 border border-white/10 cursor-pointer hover:bg-white/10 transition-colors">
+                        <i class="fas fa-upload text-gray-500"></i>
+                        <span class="text-sm text-gray-500">Upload Image</span>
+                    </div>
+                    <button type="submit" class="w-full py-4 rounded-xl bg-white/10 text-white font-medium hover:bg-white/20 transition-colors">
+                        Post Comment
+                    </button>
+                </form>
+
+                <div id="comments-list" class="space-y-4 max-h-96 overflow-y-auto scrollbar-hide">
+                    <!-- Pinned Comment -->
+                    <div class="p-4 rounded-2xl bg-purple-500/10 border border-purple-500/20 relative">
+                        <div class="flex items-start gap-3">
+                            <div class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center text-white font-bold text-sm">R</div>
+                            <div class="flex-1">
+                                <div class="flex items-center gap-2 mb-1">
+                                    <span class="text-white font-medium text-sm">Rifqi Muhammad A</span>
+                                    <span class="px-2 py-0.5 rounded-full bg-purple-500/20 text-purple-300 text-[10px] font-medium flex items-center gap-1">
+                                        <i class="fas fa-thumbtack text-[8px]"></i> PINNED
+                                    </span>
+                                </div>
+                                <p class="text-gray-400 text-sm">Terima kasih sudah mampir</p>
+                            </div>
+                            <button class="text-gray-600 hover:text-red-400 transition-colors flex items-center gap-1 text-xs" onclick="toggleLike(this)">
+                                <i class="far fa-heart"></i>
+                                <span>2</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Regular Comments -->
+                    <div class="p-4 rounded-2xl bg-white/5 border border-white/10">
+                        <div class="flex items-start gap-3">
+                            <div class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center text-white font-bold text-sm">r</div>
+                            <div class="flex-1">
+                                <p class="text-white font-medium text-sm mb-1">rifqi</p>
+                                <p class="text-gray-400 text-sm">y</p>
+                            </div>
+                            <button class="text-gray-600 hover:text-red-400 transition-colors flex items-center gap-1 text-xs" onclick="toggleLike(this)">
+                                <i class="far fa-heart"></i>
+                                <span>0</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="p-4 rounded-2xl bg-white/5 border border-white/10">
+                        <div class="flex items-start gap-3">
+                            <div class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center text-white font-bold text-sm">k</div>
+                            <div class="flex-1">
+                                <p class="text-white font-medium text-sm mb-1">kyy</p>
+                                <p class="text-gray-400 text-sm">hii</p>
+                            </div>
+                            <button class="text-gray-600 hover:text-red-400 transition-colors flex items-center gap-1 text-xs" onclick="toggleLike(this)">
+                                <i class="far fa-heart"></i>
+                                <span>0</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 px-4 text-center border-t border-white/5">
+        <p class="text-sm text-gray-600">© 2026 Rifqi Muhammad Aliya — All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Tab Switching
+        function switchTab(tabName) {
+            // Hide all contents
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            // Show selected content
+            document.getElementById(`content-${tabName}`).classList.remove('hidden');
+            
+            // Update buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('tab-active');
+            });
+            document.getElementById(`tab-${tabName}`).classList.add('tab-active');
+        }
+
+        // Project Modal
+        function openProjectModal() {
+            document.getElementById('project-modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeProjectModal() {
+            document.getElementById('project-modal').classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        // Contact Form
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('button[type="submit"]');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
+            btn.classList.add('bg-green-500/20', 'text-green-400');
+            setTimeout(() => {
+                btn.innerHTML = originalText;
+                btn.classList.remove('bg-green-500/20', 'text-green-400');
+                e.target.reset();
+            }, 3000);
+        }
+
+        // Comment Form
+        function handleCommentSubmit(e) {
+            e.preventDefault();
+            const form = e.target;
+            const name = form.querySelector('input').value;
+            const comment = form.querySelector('textarea').value;
+            
+            const commentsList = document.getElementById('comments-list');
+            const newComment = document.createElement('div');
+            newComment.className = 'p-4 rounded-2xl bg-white/5 border border-white/10 animate-pulse';
+            newComment.innerHTML = `
+                <div class="flex items-start gap-3">
+                    <div class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center text-white font-bold text-sm">${name.charAt(0).toLowerCase()}</div>
+                    <div class="flex-1">
+                        <p class="text-white font-medium text-sm mb-1">${name}</p>
+                        <p class="text-gray-400 text-sm">${comment}</p>
+                    </div>
+                    <button class="text-gray-600 hover:text-red-400 transition-colors flex items-center gap-1 text-xs" onclick="toggleLike(this)">
+                        <i class="far fa-heart"></i>
+                        <span>0</span>
+                    </button>
+                </div>
+            `;
+            
+            commentsList.insertBefore(newComment, commentsList.children[1]);
+            setTimeout(() => newComment.classList.remove('animate-pulse'), 1000);
+            form.reset();
+        }
+
+        // Like Toggle
+        function toggleLike(btn) {
+            const icon = btn.querySelector('i');
+            const count = btn.querySelector('span');
+            const currentCount = parseInt(count.textContent);
+            
+            if (icon.classList.contains('far')) {
+                icon.classList.remove('far');
+                icon.classList.add('fas', 'text-red-400');
+                count.textContent = currentCount + 1;
+            } else {
+                icon.classList.remove('fas', 'text-red-400');
+                icon.classList.add('far');
+                count.textContent = currentCount - 1;
+            }
+        }
+
+        // Smooth Scroll for Navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+
+        // Scroll Animation Observer
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100', 'translate-y-0');
+                    entry.target.classList.remove('opacity-0', 'translate-y-10');
+                }
+            });
+        }, observerOptions);
+
+        // Apply fade-in animation to sections
+        document.querySelectorAll('section').forEach(section => {
+            section.classList.add('transition-all', 'duration-1000', 'opacity-0', 'translate-y-10');
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
