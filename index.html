@@ -191,7 +191,7 @@
                     <!-- ID Card -->
                     <div class="relative w-72 h-96 bg-gradient-to-br from-gray-800 to-gray-900 rounded-3xl border-2 border-gray-700 p-3 shadow-2xl">
                         <div class="w-full h-full bg-dark-900 rounded-2xl overflow-hidden relative">
-                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=600&fit=crop&crop=face" 
+                            <img src="lol.jpg" 
                                  alt="Rifqi Muhammad Aliya" 
                                  class="w-full h-full object-cover grayscale contrast-125">
                             <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
@@ -212,50 +212,156 @@
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-        <div class="mb-12">
-            <span class="text-xs text-gray-600 uppercase tracking-widest mb-2 block">About Me</span>
-        </div>
+      <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #ffffff;
+            margin-bottom: 30px;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        .container {
+            display: flex;
+            gap: 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .left-section {
+            flex: 1;
+            max-width: 500px;
+        }
+
+        .right-section {
+            flex: 1;
+            max-width: 500px;
+        }
+
+        p {
+            color: #b0b0b0;
+            font-size: 0.95rem;
+            margin-bottom: 25px;
+            line-height: 2;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 40px;
+        }
+
+        .skill-btn {
+            background: #2a2a3a;
+            color: #e0e0e0;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 25px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .skill-btn:hover {
+            background: #3a3a4a;
+            transform: translateY(-2px);
+        }
+
+        .card {
+            background: #1a1a2e;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .card img {
+            width: 1000%;
+            height: 280px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .card-content {
+            padding: 25px;
+        }
+
+        .card-content h3 {
+            color: #ffffff;
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+            font-family: Arial, sans-serif;
+        }
+
+        .card-content p {
+            color: #a0a0a0;
+            font-size: 0.9rem;
+            line-height: 1.8;
+            margin-bottom: 0;
+        }
+
+        @media (max-width: 900px) {
+            body {
+                padding: 50px;
+            }
+            
+            .container {
+                flex-direction: column;
+            }
+            
+            .left-section,
+            .right-section {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
         
-        <div class="grid lg:grid-cols-2 gap-16 items-center">
-            <div class="space-y-8">
-                <h2 class="font-display font-bold text-5xl sm:text-6xl lg:text-7xl text-white leading-tight">
-                    Learn<br>
-                    More About<br>
-                    Mandi
-                </h2>
-                
-                <p class="text-gray-400 leading-relaxed max-w-lg">
-                    "Hi! I'm Martin Rovin R. Mandi, a second-year Information Technology student at Cavite State University - Imus Campus. I’ve been fascinated by technology and how it works since I was a kid, which is exactly why I chose IT. I'm an outgoing, multi-talented person who loves performing in front of crowds. I also enjoy the arts, specifically drawing, painting, and editing—though, fun fact, I prefer working without color whenever I draw! I love discovering new things and am always curious about the world around me."
-                </p>
-
-                <div class="p-6 rounded-2xl bg-white/5 border border-white/10">
-                    <p class="text-gray-300 italic font-light">
-                        "Turning ideas into clean, modern, and meaningful digital experiences."
-                    </p>
-                </div>
-
-                <div class="flex flex-wrap gap-4">
-                    <button class="px-6 py-3 bg-white text-black rounded-xl font-medium hover:bg-gray-200 transition-colors flex items-center gap-2">
-                        <i class="fas fa-file-alt"></i>
-                        Download CV
-                    </button>
-                    <a href="#portfolio" class="px-6 py-3 bg-white/5 border border-white/10 text-white rounded-xl font-medium hover:bg-white/10 transition-colors flex items-center gap-2">
-                        <i class="fas fa-arrow-up-right"></i>
-                        View Projects
-                    </a>
-                </div>
+        <div class="left-section">
+            <h1>About Me & Skills</h1>
+            
+            <p>I'm currently taking up Information Technology at CvSU-Imus and continuously exploring web development and design. I enjoy creating simple and interactive websites while improving my coding skills.</p>
+            
+            <p>My goals as a developer are to build user-friendly applications, contribute to open-source projects, and eventually work in a collaborative environment where I can learn and grow with other developers.</p>
+            
+            <div class="skills">
+                <button class="skill-btn">PHP</button>
+                <button class="skill-btn">PS</button>
+                <button class="skill-btn">Capcut</button>
+                <button class="skill-btn">Github</button>
+                <button class="skill-btn">HTML</button>
+                <button class="skill-btn">CSS</button>
+                <button class="skill-btn">Java</button>
+                <button class="skill-btn">Python</button>
+                <button class="skill-btn">Git</button>
+                <button class="skill-btn">Canva</button>
+                <button class="skill-btn">MS Office</button>
             </div>
+        </div>
 
-            <div class="relative">
-                <div class="w-80 h-80 mx-auto relative">
-                    <div class="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-full blur-3xl"></div>
-                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face" 
-                         alt="Profile" 
-                         class="w-full h-full object-cover rounded-full border-2 border-white/10 grayscale contrast-125 relative z-10">
+        <div class="right-section">
+            <div class="card">
+                <img src="HAAHAHAHAHAHAH.jpg" alt="Piture of me having my partner while many people in the background">
+                <div class="card-content">
+                    <h3>Beyond Coding</h3>
+                    <p>Aside from coding, I love to dance, i enjoy perform in a lot of many people. Through dancing i express who i am! </p>
                 </div>
             </div>
         </div>
+
+    </div>
+
+</body>
 
     <!-- Portfolio Section -->
     <section id="portfolio" class="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
@@ -292,7 +398,8 @@
                 </div>
 
             <div class="bg-[#1e1e1e] rounded-3xl overflow-hidden shadow-lg aspect-[4/3] relative group cursor-pointer">
-                <img src="b67ab37d-104b-4912-8f4e-0d48d66fae3b.jfif"  
+                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600" 
+                     alt="Student Login" 
                      class="absolute inset-0 w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-500">
             </div>
 
